@@ -2,7 +2,6 @@ import os
 import csv
 import locale
 
-
 csvpath = os.path.join("raw_data", "budget_data_1.csv")
 output_path = os.path.join('output', 'budget_data_1_output.csv')
 locale.setlocale( locale.LC_ALL, '' )
@@ -34,6 +33,8 @@ max_key = [k for k, v in csv_dict_with_ints.items() if v == max_value] # getting
 
 with open(output_path, 'w', newline='') as csvfile:
     
+    print()
+
     print('Financial Analysis')
     csvfile.writelines(['Financial Analysis'+ '\n'])
 
@@ -54,3 +55,5 @@ with open(output_path, 'w', newline='') as csvfile:
 
     print('Greatest Decrease in Revenue: ',min_key,locale.currency(min_value,grouping = True) )
     #csvfile.writelines(['Greatest Decrease in Revenue: ',min_key,locale.currency(min_value,grouping = True)])
+
+    print()
