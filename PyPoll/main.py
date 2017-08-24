@@ -45,7 +45,15 @@ with open(file_to_load) as election_data:
   print('----------------------------')
   print('Total Votes: ',total_votes )
   print('----------------------------')
-
+  with open(file_to_output, "w") as txt_file:
+    txt_file.write('Election Results')
+    txt_file.write("\n")
+    txt_file.write('----------------------------')
+    txt_file.write("\n")
+    txt_file.write('Total Votes: '+ str(total_votes))
+    txt_file.write("\n")
+    txt_file.write('----------------------------')
+    txt_file.write("\n")
   # Iterate through the candidate_votes
   for candidate in candidate_votes:
 
@@ -53,7 +61,10 @@ with open(file_to_load) as election_data:
     vote_percentage = round((votes / total_votes) * 100,2)
 
     print(candidate +' ' + str(vote_percentage)+'% ('+str(votes)+')')
-  
+    with open(file_to_output, "a") as txt_file:
+      txt_file.write(candidate +' ' + str(vote_percentage)+'% ('+str(votes)+')')
+      txt_file.write("\n")
+
     if(vote_percentage > greatest_vote_percentage):
 
       greatest_vote_candidate = candidate
@@ -61,24 +72,17 @@ with open(file_to_load) as election_data:
 
   # Printing The Winner
   print('----------------------------')
- #  print("The greatest vote percentage is: " + str(greatest_vote_percentage))
-#  print('----------------------------')
   print("Winner: " + greatest_vote_candidate)
   print('----------------------------')
   # Output Files
-with open(file_to_output, "w") as txt_file:
-    txt_file.write("\n")
-    txt_file.write('Election Results')
-    txt_file.write('----------------------------')
-    txt_file.write("\n")
-    txt_file.write('Total Votes: ',total_votes )
-    txt_file.write("\n")
-    txt_file.write(candidate +' ' + str(vote_percentage)+'% ('+str(votes)+')')
-    txt_file.write("\n")
-    txt_file.write("Average Revenue Change: " + locale.currency(revenue_avg,grouping = True))
-    txt_file.write("\n")
-    txt_file.write("Greatest Increase: " + str(greatest_increase[0]) + '  ('+ locale.currency(greatest_increase[1],grouping = True)+')')
-    txt_file.write("\n")
-    txt_file.write("Greatest Decrease: " + str(greatest_decrease[0])  + '  ('+ locale.currency(greatest_decrease[1],grouping = True)+')')
-    txt_file.write("\n")
+  with open(file_to_output, "a") as txt_file:
+     txt_file.write('----------------------------')
+     txt_file.write("\n")
+     txt_file.write('Winner: ' + greatest_vote_candidate)
+     txt_file.write("\n")
+     txt_file.write('----------------------------')
+     txt_file.write("\n")
+
+
+    
     
